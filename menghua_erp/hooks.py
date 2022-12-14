@@ -60,6 +60,12 @@ app_license = "MIT"
 #	"filters": "menghua_erp.utils.jinja_filters"
 # }
 
+jinja = {
+    "methods": [
+        "menghua_erp.utils.amount_in_bahttext",
+    ],
+}
+
 # Installation
 # ------------
 
