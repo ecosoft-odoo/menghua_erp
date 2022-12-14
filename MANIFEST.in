@@ -1,0 +1,18 @@
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+include *.py
+include *.txt
+recursive-include menghua_erp *.css
+recursive-include menghua_erp *.csv
+recursive-include menghua_erp *.html
+recursive-include menghua_erp *.ico
+recursive-include menghua_erp *.js
+recursive-include menghua_erp *.json
+recursive-include menghua_erp *.md
+recursive-include menghua_erp *.png
+recursive-include menghua_erp *.py
+recursive-include menghua_erp *.svg
+recursive-include menghua_erp *.txt
+recursive-exclude menghua_erp *.pyc
