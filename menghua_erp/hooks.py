@@ -7,6 +7,15 @@ app_description = "MH ERPNext"
 app_email = "kittiu@ecosoft.co.th"
 app_license = "MIT"
 
+
+fixtures = [
+    {
+		"dt": "Custom Field",
+		"filters": [("name", "in", [
+			"Delivery Note-create_and_submit_sales_invoice",
+		])],
+	},
+]
 # Includes in <head>
 # ------------------
 
@@ -115,6 +124,14 @@ jinja = {
 #		"on_trash": "method"
 #	}
 # }
+
+doc_events = {
+    "Delivery Note": {
+        "on_submit": [
+            "menghua_erp.custom_api.create_and_submit_sales_invoice",
+        ],
+    }
+}
 
 # Scheduled Tasks
 # ---------------
