@@ -52,7 +52,8 @@ function get_cash_holder_entries(frm) {
 			posting_date: ['between', [frm.doc.date_from, frm.doc.date_to]],
 			is_cancelled: 0,
 		},
-		limit: 0
+		limit: 0,
+		order_by: "posting_date"
 	}).then(records => {
 		frm.set_value("entries", records)
 	})
