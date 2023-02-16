@@ -13,6 +13,7 @@ fixtures = [
 		"dt": "Custom Field",
 		"filters": [("name", "in", [
 			"Delivery Note-create_and_submit_sales_invoice",
+            "Payment Entry-cash_holder_summary",
 		])],
 	},
 ]
@@ -39,6 +40,11 @@ fixtures = [
 
 # include js in doctype views
 # doctype_js = {"doctype" : "public/js/doctype.js"}
+
+doctype_js = {
+	"Payment Entry" : "public/js/payment_entry.js",
+}
+
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
 # doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}
@@ -130,7 +136,12 @@ doc_events = {
         "on_submit": [
             "menghua_erp.custom_api.create_and_submit_sales_invoice",
         ],
-    }
+    },
+    "Payment Entry": {
+        "validate": [
+            "menghua_erp.custom_api.validate_topup_amount",
+        ],
+    },
 }
 
 # Scheduled Tasks
