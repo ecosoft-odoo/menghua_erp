@@ -51,7 +51,8 @@ function get_cash_holder_entries(frm) {
 			account: frm.doc.cash_account,
 			posting_date: ['between', [frm.doc.date_from, frm.doc.date_to]],
 			is_cancelled: 0,
-		}
+		},
+		limit: 0
 	}).then(records => {
 		frm.set_value("entries", records)
 	})

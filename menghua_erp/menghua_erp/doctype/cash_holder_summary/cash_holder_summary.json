@@ -62,14 +62,12 @@
    "fieldtype": "Section Break"
   },
   {
-   "bold": 1,
    "fieldname": "closing",
    "fieldtype": "Currency",
    "is_virtual": 1,
    "label": "= Closing"
   },
   {
-   "bold": 1,
    "fieldname": "opening",
    "fieldtype": "Currency",
    "is_virtual": 1,
@@ -116,7 +114,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-02-15 10:26:52.300346",
+ "modified": "2023-02-16 23:55:26.728951",
  "modified_by": "Administrator",
  "module": "Menghua Erp",
  "name": "Cash Holder Summary",
