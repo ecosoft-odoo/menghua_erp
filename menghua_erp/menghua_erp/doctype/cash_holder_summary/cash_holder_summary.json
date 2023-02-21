@@ -9,6 +9,7 @@
  "engine": "InnoDB",
  "field_order": [
   "cash_account",
+  "company",
   "column_break_2",
   "date_from",
   "date_to",
@@ -109,12 +110,22 @@
    "options": "Cash Holder Summary",
    "print_hide": 1,
    "read_only": 1
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "in_standard_filter": 1,
+   "label": "Company",
+   "options": "Company",
+   "print_hide": 1,
+   "remember_last_selected_value": 1,
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-02-16 23:55:26.728951",
+ "modified": "2023-02-21 17:45:26.273673",
  "modified_by": "Administrator",
  "module": "Menghua Erp",
  "name": "Cash Holder Summary",
