@@ -7,7 +7,8 @@ frappe.ui.form.on('Cash Holder Summary', {
 	    frm.set_query("cash_account", function() {
             return {
 				filters: {
-				    account_type: "Cash"
+				    account_type: "Cash",
+					company: frm.doc.company
 				}
             }
         })
