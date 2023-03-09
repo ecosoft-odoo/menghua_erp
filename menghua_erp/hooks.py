@@ -78,6 +78,7 @@ doctype_js = {
 jinja = {
     "methods": [
         "menghua_erp.utils.amount_in_bahttext",
+        "menghua_erp.utils.to_thai_date",
     ],
 }
 
