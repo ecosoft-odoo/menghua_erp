@@ -14,9 +14,22 @@ fixtures = [
 		"filters": [("name", "in", [
 			"Delivery Note-create_and_submit_sales_invoice",
             "Payment Entry-cash_holder_summary",
+            "Vehicle Log-total",
+            "Vehicle Log-fuel_claim_type",
+            "Vehicle Log-vat",
+            "Vehicle Log-total_exclude_vat",
+            "Vehicle Log-service_claim_type",
 		])],
 	},
 ]
+
+# Monkey patching
+# ------------------
+import hrms.hr.doctype.vehicle_log.vehicle_log
+import menghua_erp.custom.vehicle_log
+
+hrms.hr.doctype.vehicle_log.vehicle_log.make_expense_claim = menghua_erp.custom.vehicle_log.make_expense_claim
+
 # Includes in <head>
 # ------------------
 
@@ -43,6 +56,7 @@ fixtures = [
 
 doctype_js = {
 	"Payment Entry" : "public/js/payment_entry.js",
+	"Expense Claim" : "public/js/expense_claim.js",
 }
 
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
@@ -143,6 +157,16 @@ doc_events = {
             "menghua_erp.custom_api.validate_topup_amount",
         ],
     },
+    "Vehicle Log": {
+        "validate": [
+            "menghua_erp.custom_api.vehicle_log_compute_total",
+        ],
+    },
+    # "Expense Claim": {
+    #     "validate": [
+    #         "menghua_erp.custom_api.vehicle_log_expense_compute_amount",
+    #     ]
+    # }
 }
 
 # Scheduled Tasks

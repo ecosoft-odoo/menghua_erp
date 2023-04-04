@@ -28,3 +28,7 @@ def validate_topup_amount(doc, method):
                     frappe.format_value(chs.withdrawal, "Float")
                 )
             )
+
+def vehicle_log_compute_total(doc, method):
+	doc.total = doc.vat + doc.total_exclude_vat
+
