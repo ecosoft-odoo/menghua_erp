@@ -30,5 +30,5 @@ def validate_topup_amount(doc, method):
             )
 
 def vehicle_log_compute_total(doc, method):
-	doc.total = doc.vat + doc.total_exclude_vat
+	doc.total = (doc.vat or 0) + (doc.total_exclude_vat or 0)
 
