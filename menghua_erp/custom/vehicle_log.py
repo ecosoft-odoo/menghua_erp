@@ -21,7 +21,8 @@ def make_expense_claim(docname):
 
 	exp_claim = frappe.new_doc("Expense Claim")
 	exp_claim.employee = vehicle_log.employee
-	exp_claim.employee_name = frappe.get_value('Employee', vehicle_log.employee, 'name')
+	exp_claim.employee_name = frappe.get_value('Employee', vehicle_log.employee, 'employee_name')
+	exp_claim.title = exp_claim.employee_name
 	exp_claim.payable_account = frappe.get_value(
 		'Company', frappe.defaults.get_user_default("Company"), 'default_expense_claim_payable_account'
 	)
