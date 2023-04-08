@@ -19,6 +19,7 @@ fixtures = [
             "Vehicle Log-vat",
             "Vehicle Log-total_exclude_vat",
             "Vehicle Log-service_claim_type",
+            "Vehicle Log-branch",
 		])],
 	},
 ]

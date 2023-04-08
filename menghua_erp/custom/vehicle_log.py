@@ -3,6 +3,7 @@
 
 
 import frappe
+import erpnext
 from frappe import _
 from frappe.utils import flt
 
@@ -19,13 +20,15 @@ def make_expense_claim(docname):
 	if not (vehicle_log.total_exclude_vat + service_expense):
 		frappe.throw(_("No additional expenses has been added"))
 
+	company = frappe.defaults.get_user_default("Company")
+
 	exp_claim = frappe.new_doc("Expense Claim")
 	exp_claim.employee = vehicle_log.employee
 	exp_claim.employee_name = frappe.get_value('Employee', vehicle_log.employee, 'employee_name')
 	exp_claim.title = exp_claim.employee_name
-	exp_claim.payable_account = frappe.get_value(
-		'Company', frappe.defaults.get_user_default("Company"), 'default_expense_claim_payable_account'
-	)
+	exp_claim.payable_account = frappe.get_value('Company', company, 'default_expense_claim_payable_account')
+	exp_claim.cost_center = erpnext.get_default_cost_center(company)
+	exp_claim.branch = vehicle_log.branch
 	exp_claim.tax_invoice_number = vehicle_log.invoice
 	exp_claim.tax_invoice_date = vehicle_log.date
 	exp_claim.supplier = vehicle_log.supplier
