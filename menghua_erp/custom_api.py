@@ -32,3 +32,13 @@ def validate_topup_amount(doc, method):
 def vehicle_log_compute_total(doc, method):
 	doc.total = (doc.vat or 0) + (doc.total_exclude_vat or 0)
 
+def update_default_branch_for_bank_entry(doc, method):
+    if doc.voucher_type != "Bank Entry":
+        return
+    company = frappe.defaults.get_user_default("Company")
+    branch = frappe.get_value('Company', company, 'default_branch')
+    if not branch:
+        return
+    for l in doc.accounts:
+        if not l.branch:
+            l.branch = "สำนักงานใหญ่"

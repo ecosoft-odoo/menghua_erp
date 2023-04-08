@@ -20,6 +20,7 @@ fixtures = [
             "Vehicle Log-total_exclude_vat",
             "Vehicle Log-service_claim_type",
             "Vehicle Log-branch",
+            "Company-default_branch",
 		])],
 	},
 ]
@@ -163,6 +164,9 @@ doc_events = {
             "menghua_erp.custom_api.vehicle_log_compute_total",
         ],
     },
+    "Journal Entry": {
+        "before_submit": "menghua_erp.custom_api.update_default_branch_for_bank_entry",
+    }
     # "Expense Claim": {
     #     "validate": [
     #         "menghua_erp.custom_api.vehicle_log_expense_compute_amount",
