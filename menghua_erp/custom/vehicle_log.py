@@ -21,6 +21,7 @@ def make_expense_claim(docname):
 		frappe.throw(_("No additional expenses has been added"))
 
 	company = frappe.defaults.get_user_default("Company")
+	setting = frappe.get_doc('Tax Invoice Settings')
 
 	exp_claim = frappe.new_doc("Expense Claim")
 	exp_claim.employee = vehicle_log.employee
@@ -47,6 +48,8 @@ def make_expense_claim(docname):
 		)
 		exp_claim.append(
 			"taxes", {
+				"account_head": setting.purchase_tax_account,
+				"description": setting.purchase_tax_account,
 				"tax_amount": vehicle_log.vat,
 				"total": vehicle_log.total,
 			}
