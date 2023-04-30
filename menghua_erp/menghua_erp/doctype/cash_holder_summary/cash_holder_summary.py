@@ -43,3 +43,22 @@ class CashHolderSummary(Document):
     @property
     def withdrawal(self):
         return sum([r.credit for r in self.entries])
+
+@frappe.whitelist()
+def get_entries(account, date_from, date_to):
+    ret = frappe.db.sql(
+        """
+        select voucher_type, voucher_no, posting_date, remarks,
+        case when sum(debit-credit) > 0 then sum(debit-credit) else 0 end as debit,
+        case when sum(credit-debit) > 0 then sum(credit-debit) else 0 end as credit
+        from `tabGL Entry`
+        where account=%s
+        and posting_date >= %s and posting_date <= %s
+        and is_cancelled = 0
+        group by voucher_type, voucher_no, posting_date, remarks
+        order by posting_date, voucher_no
+        """,
+        (account, date_from, date_to),
+        as_dict=1,
+    )
+    return ret

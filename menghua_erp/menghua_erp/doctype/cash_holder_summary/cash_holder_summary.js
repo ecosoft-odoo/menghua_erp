@@ -39,23 +39,16 @@ frappe.ui.form.on('Cash Holder Summary', {
 });
 
 function get_cash_holder_entries(frm) {
-	frappe.db.get_list('GL Entry', {
-		fields: [
-			'voucher_type',
-			'voucher_no',
-			'debit',
-			'credit',
-			'posting_date',
-			'remarks',
-		],
-		filters: {
+	frappe.call({
+		method:
+			"menghua_erp.menghua_erp.doctype.cash_holder_summary.cash_holder_summary.get_entries",
+		args: {
 			account: frm.doc.cash_account,
-			posting_date: ['between', [frm.doc.date_from, frm.doc.date_to]],
-			is_cancelled: 0,
+			date_from: frm.doc.date_from,
+			date_to: frm.doc.date_to,
 		},
-		limit: 0,
-		order_by: "posting_date"
-	}).then(records => {
-		frm.set_value("entries", records)
-	})
+		callback: (r) => {
+			frm.set_value("entries", r.message)
+		},
+	});
 }
