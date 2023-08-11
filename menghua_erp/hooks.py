@@ -32,6 +32,10 @@ import menghua_erp.custom.vehicle_log
 
 hrms.hr.doctype.vehicle_log.vehicle_log.make_expense_claim = menghua_erp.custom.vehicle_log.make_expense_claim
 
+import erpnext.loan_management.doctype.loan_repayment.loan_repayment
+import menghua_erp.custom.loan_repayment
+erpnext.loan_management.doctype.loan_repayment.loan_repayment.regenerate_repayment_schedule = menghua_erp.custom.loan_repayment.regenerate_repayment_schedule
+
 # Includes in <head>
 # ------------------
 
