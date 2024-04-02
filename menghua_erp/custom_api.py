@@ -19,7 +19,7 @@ def validate_topup_amount(doc, method):
     """
     if doc.cash_holder_summary:
         chs = frappe.get_doc("Cash Holder Summary", doc.cash_holder_summary)
-        if doc.paid_amount != chs.withdrawal or doc.received_amount != chs.withdrawal:
+        if round(doc.paid_amount, 2) != round(chs.withdrawal, 2) or round(doc.received_amount, 2) != round(chs.withdrawal, 2):
             frappe.throw(
                 _(
                     "Transfer amount is not valid with Cash Holder Summary - {} - {}"
